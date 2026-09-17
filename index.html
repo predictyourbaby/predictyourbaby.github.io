@@ -178,6 +178,25 @@
   .type-chip{background:var(--sage-pale);color:var(--sage-deep);font-weight:700;font-size:0.95rem;
     padding:8px 16px;border-radius:10px;font-family:'Newsreader',serif;}
 
+  /* ---------- Share row ---------- */
+  .share-wrap{margin-top:24px;text-align:center;}
+  .share-caption{font-size:0.78rem;color:var(--ink-soft);margin-bottom:10px;font-weight:600;letter-spacing:0.02em;text-transform:uppercase;}
+  .share-row{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;}
+  .share-icon{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+    display:inline-flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;
+    color:var(--ink-soft);transition:all .15s ease;position:relative;}
+  .share-icon svg{width:19px;height:19px;}
+  .share-icon:hover{transform:translateY(-2px);border-color:transparent;color:#fff;}
+  .share-icon.fb:hover{background:#1877F2;}
+  .share-icon.wa:hover{background:#25D366;}
+  .share-icon.pin:hover{background:#E60023;}
+  .share-icon.li:hover{background:#0A66C2;}
+  .share-icon.ig:hover{background:radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);}
+  .share-icon.copy:hover{background:var(--sage-deep);}
+  .share-tip{position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);
+    font-size:0.7rem;padding:3px 8px;border-radius:5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s ease;}
+  .share-icon.show-tip .share-tip{opacity:1;}
+
   /* ---------- Long-form content ---------- */
   .content{max-width:68ch;margin-top:56px;}
   .content h2{font-size:1.5rem;margin:46px 0 14px;}
@@ -273,7 +292,13 @@ const ICONS = {
   lock:'<svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 8V6a5 5 0 0110 0v2h1a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1h1zm2 0h6V6a3 3 0 00-6 0v2z"/></svg>',
   calendar:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>',
   drop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s7 8.5 7 13a7 7 0 01-14 0c0-4.5 7-13 7-13z"/></svg>',
-  share:'<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="5" r="2.2"/><circle cx="5" cy="10" r="2.2"/><circle cx="15" cy="15" r="2.2"/><path d="M7 8.8l6-3M7 11.2l6 3"/></svg>'
+  share:'<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="5" r="2.2"/><circle cx="5" cy="10" r="2.2"/><circle cx="15" cy="15" r="2.2"/><path d="M7 8.8l6-3M7 11.2l6 3"/></svg>',
+  fb:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>',
+  wa:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.94-.27-.1-.46-.15-.66.15-.2.3-.75.94-.92 1.13-.17.2-.34.22-.63.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.38-.07-.13-.27-.2-.57-.35zM12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.43A9.94 9.94 0 0012.02 22C17.55 22 22 17.52 22 12S17.55 2 12.02 2z"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.86 6.35 9.32-.09-.79-.17-2.02.03-2.89.19-.79 1.23-5.05 1.23-5.05s-.31-.63-.31-1.55c0-1.45.84-2.53 1.89-2.53.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.89 1.55 1.89 1.86 0 3.29-1.96 3.29-4.79 0-2.5-1.8-4.26-4.36-4.26-2.97 0-4.71 2.23-4.71 4.53 0 .9.34 1.86.78 2.38.09.1.1.19.07.3-.08.32-.25 1.04-.29 1.18-.05.19-.15.23-.35.14-1.3-.6-2.11-2.5-2.11-4.02 0-3.27 2.38-6.28 6.85-6.28 3.6 0 6.4 2.56 6.4 5.99 0 3.57-2.25 6.45-5.38 6.45-1.05 0-2.04-.55-2.38-1.19l-.65 2.47c-.23.9-.86 2.02-1.28 2.71.97.3 2 .46 3.06.46 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>',
+  li:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>',
+  ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07l1.5-1.5"/></svg>'
 };
 
 /* ============ IMAGE SLOTS ============ */
@@ -314,23 +339,58 @@ function relatedRow(items){
   return `<div class="related-row">${items.map(i=>`<a class="related-chip" href="${i[0]}" data-link>${i[1]} →</a>`).join('')}</div>`;
 }
 
-/* ============ SHARE BUTTON ============ */
-function shareBtnHtml(id){
-  return `<button class="reset" id="${id}" type="button">${ICONS.share}Share result</button>`;
+/* ============ SOCIAL SHARE ROW ============ */
+/* Renders a centered row of real platform share icons (Facebook, WhatsApp, Pinterest,
+   LinkedIn, Instagram, Copy link). Call shareRowHtml(id) in markup, then attachShareRow(id, textFn)
+   after the markup is in the DOM. urlFn defaults to the current page URL (location.href), which is
+   correct because each tool now has its own real, shareable URL (see router fix below). */
+function shareRowHtml(id, caption){
+  return `<div class="share-wrap">
+    <div class="share-caption">${caption || 'Share this result'}</div>
+    <div class="share-row" id="${id}">
+      <a class="share-icon fb" data-net="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook">${ICONS.fb}</a>
+      <a class="share-icon wa" data-net="whatsapp" target="_blank" rel="noopener" aria-label="Share on WhatsApp">${ICONS.wa}</a>
+      <a class="share-icon pin" data-net="pinterest" target="_blank" rel="noopener" aria-label="Share on Pinterest">${ICONS.pin}</a>
+      <a class="share-icon li" data-net="linkedin" target="_blank" rel="noopener" aria-label="Share on LinkedIn">${ICONS.li}</a>
+      <button type="button" class="share-icon ig" data-net="instagram" aria-label="Share on Instagram"><span class="share-tip">Link copied — paste in Instagram</span>${ICONS.ig}</button>
+      <button type="button" class="share-icon copy" data-net="copy" aria-label="Copy link"><span class="share-tip">Copied!</span>${ICONS.link}</button>
+    </div>
+  </div>`;
 }
-function attachShare(btnId, getText){
-  const btn = document.getElementById(btnId);
-  if(!btn) return;
-  btn.onclick = async () => {
-    const text = getText();
-    if(navigator.share){
-      try{ await navigator.share({title:'predictyourbaby.com', text, url: location.href}); return; }catch(e){ /* user cancelled */ }
-    }
+function attachShareRow(id, getText, getUrl){
+  const row = document.getElementById(id);
+  if(!row) return;
+  const url = () => (getUrl ? getUrl() : location.href);
+  const text = () => (getText ? getText() : document.title);
+
+  row.querySelectorAll('a.share-icon').forEach(a=>{
+    const net = a.dataset.net;
+    const u = encodeURIComponent(url());
+    const t = encodeURIComponent(text());
+    if(net === 'facebook') a.href = `https://www.facebook.com/sharer/sharer.php?u=${u}`;
+    if(net === 'whatsapp') a.href = `https://api.whatsapp.com/send?text=${t}%20${u}`;
+    if(net === 'pinterest') a.href = `https://pinterest.com/pin/create/button/?url=${u}&description=${t}`;
+    if(net === 'linkedin') a.href = `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
+  });
+
+  const copyToClipboard = async (tipBtn) => {
     try{
-      await navigator.clipboard.writeText(text + ' — ' + location.href);
-      const old = btn.innerHTML; btn.innerHTML = ICONS.check + 'Copied!';
-      setTimeout(()=>{ btn.innerHTML = old; }, 1700);
+      await navigator.clipboard.writeText(`${text()} — ${url()}`);
+      tipBtn.classList.add('show-tip');
+      setTimeout(()=>tipBtn.classList.remove('show-tip'), 1600);
     }catch(e){ /* clipboard unavailable */ }
+  };
+
+  const copyBtn = row.querySelector('button.copy');
+  if(copyBtn) copyBtn.onclick = () => copyToClipboard(copyBtn);
+
+  // Instagram has no public "share with prefilled link" URL — the standard workaround
+  // is to copy the link/text and open Instagram so the user can paste it into a
+  // Story, bio, or DM themselves.
+  const igBtn = row.querySelector('button.ig');
+  if(igBtn) igBtn.onclick = async () => {
+    await copyToClipboard(igBtn);
+    window.open('https://www.instagram.com/', '_blank', 'noopener');
   };
 }
 
@@ -590,7 +650,7 @@ function toolEyeColor(c){
       <div class="result-label">Estimated probability of each eye color</div>
       <div id="bars"></div>
       <div class="insight-box" id="insight"><div class="insight-tag">${ICONS.spark}What this means</div><p id="insightText"></p></div>
-      ${shareBtnHtml('shareBtn')}
+      ${shareRowHtml('shareRow')}
       <div class="disclaimer">Based on general dominance patterns across the OCA2 and HERC2 genes. Eye color is polygenic — treat this as an educated estimate, not a guarantee.</div>
     </div>`;
   document.getElementById('p2').selectedIndex = 3;
@@ -612,7 +672,7 @@ function toolEyeColor(c){
     text += `Remember this is a tendency across many families with this profile, not a guarantee for your specific child.`;
     document.getElementById('insightText').textContent = text;
     document.getElementById('insight').classList.add('show');
-    attachShare('shareBtn', () => `My baby eye color prediction: ${top.name} (${top.val.toFixed(0)}%) — try the free calculator at predictyourbaby.com`);
+    attachShareRow('shareRow', () => `My baby eye color prediction: ${top.name} (${top.val.toFixed(0)}%)`);
   };
 }
 
@@ -633,7 +693,7 @@ function toolHair(c){
       <div class="result-label">Estimated probability of each hair color</div>
       <div id="bars"></div>
       <div class="insight-box" id="insight"><div class="insight-tag">${ICONS.spark}What this means</div><p id="insightText"></p></div>
-      ${shareBtnHtml('shareBtn')}
+      ${shareRowHtml('shareRow')}
       <div class="disclaimer">Use each parent's childhood hair color where known — hair commonly darkens with age, which can skew results lighter than reality.</div>
     </div>`;
   document.getElementById('h2').selectedIndex = 3;
@@ -656,7 +716,7 @@ function toolHair(c){
     text += `Keep in mind newborn hair color often shifts — usually darkening — over the first few years.`;
     document.getElementById('insightText').textContent = text;
     document.getElementById('insight').classList.add('show');
-    attachShare('shareBtn', () => `My baby hair color prediction: ${top.name} (${top.val.toFixed(0)}%) — try the free calculator at predictyourbaby.com`);
+    attachShareRow('shareRow', () => `My baby hair color prediction: ${top.name} (${top.val.toFixed(0)}%)`);
   };
 }
 
@@ -676,7 +736,7 @@ function toolHeight(c){
       <div class="big-result" id="hres"></div>
       <div id="hrange" style="color:var(--ink-soft);font-size:0.92rem;"></div>
       <div class="insight-box" id="insight"><div class="insight-tag">${ICONS.spark}What this means</div><p id="insightText"></p></div>
-      ${shareBtnHtml('shareBtn')}
+      ${shareRowHtml('shareRow')}
       <div class="disclaimer">Mid-parental height method. About 68% of children fall within ±8.5 cm of this estimate. Nutrition, health and hormonal factors also affect final height.</div>
     </div>`;
   document.getElementById('rst').onclick = () => toolHeight(c);
@@ -696,7 +756,7 @@ function toolHeight(c){
     text += `About two-thirds of children with this parental profile end up somewhere in the ${(est-8.5).toFixed(0)}–${(est+8.5).toFixed(0)} cm range — nutrition and health through childhood account for most of the rest.`;
     document.getElementById('insightText').textContent = text;
     document.getElementById('insight').classList.add('show');
-    attachShare('shareBtn', () => `My baby height prediction: ${est.toFixed(0)} cm as an adult — try the free calculator at predictyourbaby.com`);
+    attachShareRow('shareRow', () => `My baby height prediction: ${est.toFixed(0)} cm as an adult`);
   };
 }
 
@@ -711,7 +771,7 @@ function toolGender(c){
     <div class="result" id="result">
       <div class="result-label">Traditional chart result</div>
       <div class="big-result" id="gres"></div>
-      ${shareBtnHtml('shareBtn')}
+      ${shareRowHtml('shareRow')}
       <div class="disclaimer">This is the traditional Chinese gender chart — folklore, not science. It performs at roughly chance level. For an accurate answer, an ultrasound (typically 18–20 weeks) or a blood test ordered by your doctor is the reliable route.</div>
     </div>`;
   document.getElementById('rst').onclick = () => toolGender(c);
@@ -722,7 +782,7 @@ function toolGender(c){
     const resultTxt = (age+month)%2===0 ? "Boy" : "Girl";
     document.getElementById('gres').textContent = resultTxt;
     document.getElementById('result').classList.add('show');
-    attachShare('shareBtn', () => `The Chinese gender chart guesses: ${resultTxt}! Try it yourself (just for fun) at predictyourbaby.com`);
+    attachShareRow('shareRow', () => `The Chinese gender chart guesses: ${resultTxt}! (Just for fun.)`);
   };
 }
 
@@ -738,7 +798,7 @@ function toolDueDate(c){
       <div class="big-result" id="dres"></div>
       <div id="dsub" style="color:var(--ink-soft);font-size:0.92rem;margin-bottom:6px;"></div>
       <div class="insight-box" id="insight"><div class="insight-tag">${ICONS.spark}What this means</div><p id="insightText"></p></div>
-      ${shareBtnHtml('shareBtn')}
+      ${shareRowHtml('shareRow')}
       <div class="disclaimer">Based on Naegele's rule (LMP + 280 days), adjusted for cycle length. Only about 4–5% of babies are born on their exact due date — treat this as a window, not a deadline.</div>
     </div>`;
   document.getElementById('rst').onclick = () => toolDueDate(c);
@@ -770,7 +830,7 @@ function toolDueDate(c){
     document.getElementById('insightText').textContent = progressText + `Naegele's rule assumes a ${cyc}-day cycle with ovulation around day ${14+cycleAdjust}; an early ultrasound is more precise if your cycle is irregular.`;
     document.getElementById('result').classList.add('show');
     document.getElementById('insight').classList.add('show');
-    attachShare('shareBtn', () => `My estimated due date is ${fmt(dueDate)} — calculate yours free at predictyourbaby.com`);
+    attachShareRow('shareRow', () => `My estimated due date is ${fmt(dueDate)}`);
   };
 }
 
@@ -791,7 +851,7 @@ function toolBloodType(c){
       <div class="result-label">Blood types genetically possible for your baby</div>
       <div class="type-chips" id="typeChips"></div>
       <div class="insight-box" id="insight"><div class="insight-tag">${ICONS.spark}What this means</div><p id="insightText"></p></div>
-      ${shareBtnHtml('shareBtn')}
+      ${shareRowHtml('shareRow')}
       <div class="disclaimer">This shows every type genetically possible for these parents — not weighted odds — because each parent's full genotype (e.g. whether a type-A parent is AA or AO) isn't determinable from blood type alone.</div>
     </div>`;
   document.getElementById('ma').selectedIndex = 1;
@@ -820,7 +880,7 @@ function toolBloodType(c){
     const text = `With a type ${fa}${fr==='Positive'?'+':'-'} father and a type ${ma}${mr==='Positive'?'+':'-'} mother, the baby's blood type will be one of: ${types.join(', ')}. ${rhText}`;
     document.getElementById('insightText').textContent = text;
     document.getElementById('insight').classList.add('show');
-    attachShare('shareBtn', () => `Possible baby blood types for us: ${types.join(', ')} — try the free calculator at predictyourbaby.com`);
+    attachShareRow('shareRow', () => `Possible baby blood types for us: ${types.join(', ')}`);
   };
 }
 
@@ -845,7 +905,7 @@ function contentEyeColor(){
       <li><strong>Select the mother's eye color</strong> from the second dropdown.</li>
       <li><strong>Add grandparent colors if you know them.</strong> Each one sharpens the estimate by revealing recessive genes the parents carry but don't show.</li>
       <li><strong>Press Calculate</strong> to see a percentage for every possible eye color, ranked most to least likely.</li>
-      <li><strong>Read the "What this means" summary,</strong> then tap Share result to send the eye color prediction to a partner or family group chat.</li>
+      <li><strong>Read the "What this means" summary,</strong> then use the share row to send the eye color prediction to a partner or family group chat.</li>
     </ol>
     <div class="callout"><div class="callout-title">${ICONS.bulb}Tip</div><p>If an eye reads as a brown-green mix, choose hazel. If you're torn between two shades, pick the darker one — people tend to describe their own eyes lighter than they measure.</p></div>
 
@@ -923,7 +983,7 @@ function contentHair(){
       <li><strong>Select the mother's natural hair color</strong> the same way.</li>
       <li><strong>Add grandparent hair colors</strong> if known, to surface recessive shades like red or blonde.</li>
       <li><strong>Press Calculate</strong> to see the probability of each shade, plus a plain-language summary.</li>
-      <li><strong>Share the result</strong> with your partner using the Share result button once you're done.</li>
+      <li><strong>Share the result</strong> with your partner using the share row once you're done.</li>
     </ol>
     <div class="callout"><div class="callout-title">${ICONS.bulb}Tip</div><p>Use natural, undyed color, and where possible each parent's color as a young child — hair often darkens with age, so an adult's current shade can understate the darker genes they carry.</p></div>
 
@@ -1205,6 +1265,23 @@ function contentBloodType(){
 }
 
 /* ===================== ROUTER (real URLs, pushState) ===================== */
+
+/* --- GitHub Pages deep-link fix ---
+   GitHub Pages can't rewrite unknown paths to index.html on its own, so a matching
+   404.html (see below) redirects /eye-color -> /?p=/eye-color before this page loads.
+   This restores the clean URL via history.replaceState BEFORE the router first runs,
+   so /eye-color keeps working after a refresh, a bookmark, or a shared link. */
+(function restoreDeepLink(){
+  const params = new URLSearchParams(window.location.search);
+  const redirectPath = params.get('p');
+  if(redirectPath){
+    params.delete('p');
+    const rest = params.toString();
+    const clean = redirectPath + (rest ? ('?' + rest) : '') + window.location.hash;
+    history.replaceState(null, '', clean);
+  }
+})();
+
 function currentPath(){
   return window.location.pathname.replace(/^\/|\/$/g,'');
 }
