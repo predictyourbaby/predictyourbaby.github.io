@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pregnancy Due Date Calculator — Estimate Your Baby's Arrival</title>
 <meta name="description" content="Estimate your pregnancy due date, gestational age and trimester from the first day of your last menstrual period and your average cycle length.">
-<link rel="canonical" id="canonicalTag" href="https://predictyourbaby.com/">
+<link rel="canonical" id="canonicalTag" href="https://predictyourbaby.com/due-date/">
 
 <!-- Favicon (inline SVG, no separate file upload needed) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23F7F4EC' stroke='%23C97A5A' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%235F7A63'/%3E%3C/svg%3E">
@@ -293,6 +293,7 @@ body{overflow-x:hidden;}
   .btn-row button{width:100%;justify-content:center;}
 }
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is my due date calculated?","acceptedAnswer":{"@type":"Answer","text":"The standard method (Naegele's rule) adds 280 days — 40 weeks — to the first day of your last menstrual period, assuming a typical 28-day cycle."}},{"@type":"Question","name":"Is the due date exact?","acceptedAnswer":{"@type":"Answer","text":"No — it's an estimate. Only around 4–5% of babies arrive on the exact calculated date; most arrive within a window of roughly two weeks either side."}},{"@type":"Question","name":"What if my cycle isn't 28 days?","acceptedAnswer":{"@type":"Answer","text":"Shorter or longer cycles shift ovulation, so your actual due date can differ from the calendar estimate. A dating ultrasound around 8–12 weeks is more precise for irregular cycles."}},{"@type":"Question","name":"What's the difference between gestational age and fetal age?","acceptedAnswer":{"@type":"Answer","text":"Gestational age counts from the last menstrual period, about two weeks before conception actually happened. Fetal age counts from conception itself. Doctors use gestational age by convention."}},{"@type":"Question","name":"How are trimesters divided?","acceptedAnswer":{"@type":"Answer","text":"First trimester: weeks 1–13. Second trimester: weeks 14–27. Third trimester: week 28 until birth."}},{"@type":"Question","name":"Can this calculator confirm I'm pregnant?","acceptedAnswer":{"@type":"Answer","text":"No — it only does date math from information you provide. A pregnancy test or a doctor's visit is needed to confirm and date a pregnancy accurately."}}]}</script>
 </head>
 <body>
 
@@ -314,7 +315,125 @@ body{overflow-x:hidden;}
   </div>
 </div>
 
-<main id="main"></main>
+<main id="main">
+    <div class="tool-eyebrow">Pregnancy calculator · High accuracy</div>
+    <h1 class="tool-heading">Pregnancy due date calculator</h1>
+    <p class="tool-sub">Enter the first day of your last period to estimate your due date, current trimester and gestational age.</p>
+    <div class="accuracy-row"><span class="chip chip-high">High accuracy</span></div>
+    <div class="panel" id="panel">
+    <div class="field-row">
+      <div><label for="lmp">First day of last period (LMP)</label><input type="date" id="lmp"></div>
+      <div><label for="cyc">Average cycle length (days)</label><input type="number" id="cyc" placeholder="28" min="20" max="45" value="28"></div>
+    </div>
+    <div class="btn-row"><button class="go" id="calc">Calculate</button><button class="reset" id="rst">Reset</button></div>
+    <div class="result" id="result">
+      <div class="result-label">Estimated pregnancy timeline</div>
+      <div class="big-result" id="dres"></div>
+      <div id="dsub" style="color:var(--ink-soft);font-size:0.92rem;margin-bottom:6px;"></div>
+      <div class="insight-box" id="insight"><div class="insight-tag"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2l1.6 4.9L16.5 8.5 11.6 10 10 15l-1.6-5L3.5 8.5 8.4 6.9 10 2z"></path></svg>What this means</div><p id="insightText"></p></div>
+      <div class="share-wrap">
+    <div class="share-caption">Share this result</div>
+    <div class="share-row" id="shareRow">
+      <a class="share-icon fb" data-net="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"></path></svg></a>
+      <a class="share-icon wa" data-net="whatsapp" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.94-.27-.1-.46-.15-.66.15-.2.3-.75.94-.92 1.13-.17.2-.34.22-.63.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.38-.07-.13-.27-.2-.57-.35zM12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.43A9.94 9.94 0 0012.02 22C17.55 22 22 17.52 22 12S17.55 2 12.02 2z"></path></svg></a>
+      <a class="share-icon pin" data-net="pinterest" target="_blank" rel="noopener" aria-label="Share on Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.86 6.35 9.32-.09-.79-.17-2.02.03-2.89.19-.79 1.23-5.05 1.23-5.05s-.31-.63-.31-1.55c0-1.45.84-2.53 1.89-2.53.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.89 1.55 1.89 1.86 0 3.29-1.96 3.29-4.79 0-2.5-1.8-4.26-4.36-4.26-2.97 0-4.71 2.23-4.71 4.53 0 .9.34 1.86.78 2.38.09.1.1.19.07.3-.08.32-.25 1.04-.29 1.18-.05.19-.15.23-.35.14-1.3-.6-2.11-2.5-2.11-4.02 0-3.27 2.38-6.28 6.85-6.28 3.6 0 6.4 2.56 6.4 5.99 0 3.57-2.25 6.45-5.38 6.45-1.05 0-2.04-.55-2.38-1.19l-.65 2.47c-.23.9-.86 2.02-1.28 2.71.97.3 2 .46 3.06.46 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg></a>
+      <a class="share-icon li" data-net="linkedin" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.56V9h3.56v11.45z"></path></svg></a>
+      <button type="button" class="share-icon ig" data-net="instagram" aria-label="Share on Instagram"><span class="share-tip">Link copied — paste in Instagram</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg></button>
+      <button type="button" class="share-icon copy" data-net="copy" aria-label="Copy link"><span class="share-tip">Copied!</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07l-1.5 1.5"></path><path d="M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07l1.5-1.5"></path></svg></button>
+    </div>
+  </div>
+      <div class="disclaimer">Based on Naegele's rule (LMP + 280 days), adjusted for cycle length. Only about 4–5% of babies are born on their exact due date — treat this as a window, not a deadline.</div>
+    </div></div>
+    <div class="content">
+    <h2>How to use the due date calculator</h2>
+    <ol>
+      <li><strong>Enter the first day of your last menstrual period (LMP).</strong></li>
+      <li><strong>Enter your average cycle length</strong> in days — use 28 if you're unsure, since that's the standard assumption.</li>
+      <li><strong>Press Calculate</strong> to see your estimated due date, estimated conception date, and — if the date is in the past — your current gestational age and trimester.</li>
+    </ol>
+    <div class="callout"><div class="callout-title"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0010 2zM8 16h4v1a2 2 0 01-4 0v-1z"></path></svg>Tip</div><p>If your cycles are irregular or longer/shorter than 28 days, a dating ultrasound between weeks 8–12 will give a more accurate due date than any calendar-based estimate, including this one.</p></div>
+
+    <h2>How due dates are calculated</h2>
+    <p>This calculator uses <strong>Naegele's rule</strong>, the standard method used in prenatal care: take the first day of the last menstrual period, add one year, subtract three months, and add seven days — mathematically equivalent to adding 280 days (40 weeks). It assumes ovulation occurs around day 14 of a 28-day cycle, so the calculator adjusts slightly if you enter a different average cycle length.</p>
+
+    <div class="chart-wrap"><div class="chart-title">How babies are distributed around the due date</div>
+    <div class="hbar-row">
+      <div class="hbar-label">Before 37wk</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:14%;background:#C97A5A"></div></div>
+      <div class="hbar-val">8%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">37–39wk</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:46%;background:#8FAE93"></div></div>
+      <div class="hbar-val">26%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">39–41wk</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:#5F7A63"></div></div>
+      <div class="hbar-val">57%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">After 41wk</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:16%;background:#C97A5A"></div></div>
+      <div class="hbar-val">9%</div>
+    </div></div>
+
+    <h3>Gestational age vs. fetal age</h3>
+    <p>Doctors track pregnancy in <strong>gestational age</strong>, counted from the last menstrual period — about two weeks before conception actually occurred. <strong>Fetal age</strong>, sometimes called conceptional age, counts from the actual conception date instead. The two-week gap is a common source of confusion, especially when comparing due date estimates between a calendar-based calculator like this one and an early pregnancy dating scan.</p>
+
+    <h2>Trimester breakdown</h2>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Trimester</th><th>Weeks</th><th>What's typically happening</th></tr></thead>
+      <tbody>
+        <tr><td>First</td><td>1–13</td><td>Major organ development; morning sickness and fatigue are most common here.</td></tr>
+        <tr><td>Second</td><td>14–27</td><td>Often called the most comfortable stretch; anatomy scan usually falls around week 18–20.</td></tr>
+        <tr><td>Third</td><td>28–birth</td><td>Rapid weight gain and final organ maturation; more frequent prenatal visits begin.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="img-slot"><img src="images/pregnancy-calendar.webp" alt="Calendar marking pregnancy due date and trimesters" loading="lazy" onerror="this.outerHTML='&lt;div class=\'img-ph\'&gt;Image slot — replace with: images/pregnancy-calendar.webp&lt;/div&gt;'">
+    <div class="img-cap">Calendar marking pregnancy due date and trimesters</div></div>
+
+    <h2>Terms related to due date prediction</h2>
+    <dl class="glossary"><div class="gterm"><dt>LMP</dt><dd>Last menstrual period — the first day of a person's most recent period before pregnancy, the standard reference point for dating a pregnancy.</dd></div><div class="gterm"><dt>Naegele's rule</dt><dd>The standard formula (LMP + 280 days) used to estimate a due date, named after the German obstetrician who popularized it.</dd></div><div class="gterm"><dt>Gestational age</dt><dd>Pregnancy duration measured from the last menstrual period, the convention used on prenatal charts and ultrasounds.</dd></div><div class="gterm"><dt>Dating scan</dt><dd>An early ultrasound, typically weeks 8–12, used to confirm or adjust the estimated due date based on fetal measurements rather than menstrual dates.</dd></div><div class="gterm"><dt>Full term</dt><dd>Babies born between 39 and 40 weeks 6 days are considered full term; earlier or later ranges have their own medical classifications.</dd></div></dl>
+
+    <h2>Why your actual delivery date may differ</h2>
+    <ul>
+      <li><strong>Irregular cycles</strong> shift the true ovulation date away from the day-14 assumption.</li>
+      <li><strong>Only a small share of babies</strong> — around 4–5% — arrive on their exact calculated due date.</li>
+      <li><strong>Ultrasound dating</strong> in early pregnancy is generally more accurate than LMP-based dating alone, especially for irregular cycles.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+    <div class="faq-item" data-i="0">
+      <button class="faq-q" type="button">How is my due date calculated?<span class="chev">+</span></button>
+      <div class="faq-a"><p>The standard method (Naegele's rule) adds 280 days — 40 weeks — to the first day of your last menstrual period, assuming a typical 28-day cycle.</p></div>
+    </div>
+    <div class="faq-item" data-i="1">
+      <button class="faq-q" type="button">Is the due date exact?<span class="chev">+</span></button>
+      <div class="faq-a"><p>No — it's an estimate. Only around 4–5% of babies arrive on the exact calculated date; most arrive within a window of roughly two weeks either side.</p></div>
+    </div>
+    <div class="faq-item" data-i="2">
+      <button class="faq-q" type="button">What if my cycle isn't 28 days?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Shorter or longer cycles shift ovulation, so your actual due date can differ from the calendar estimate. A dating ultrasound around 8–12 weeks is more precise for irregular cycles.</p></div>
+    </div>
+    <div class="faq-item" data-i="3">
+      <button class="faq-q" type="button">What's the difference between gestational age and fetal age?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Gestational age counts from the last menstrual period, about two weeks before conception actually happened. Fetal age counts from conception itself. Doctors use gestational age by convention.</p></div>
+    </div>
+    <div class="faq-item" data-i="4">
+      <button class="faq-q" type="button">How are trimesters divided?<span class="chev">+</span></button>
+      <div class="faq-a"><p>First trimester: weeks 1–13. Second trimester: weeks 14–27. Third trimester: week 28 until birth.</p></div>
+    </div>
+    <div class="faq-item" data-i="5">
+      <button class="faq-q" type="button">Can this calculator confirm I'm pregnant?<span class="chev">+</span></button>
+      <div class="faq-a"><p>No — it only does date math from information you provide. A pregnancy test or a doctor's visit is needed to confirm and date a pregnancy accurately.</p></div>
+    </div></div>
+
+    <div class="related-row"><a class="related-chip" href="/gender" data-link="">Gender predictor →</a><a class="related-chip" href="/height" data-link="">Height predictor →</a><a class="related-chip" href="/blood-type" data-link="">Blood type predictor →</a></div>
+  </div>
+    <footer><span>© 2026 predictyourbaby · Educational and entertainment use only · Not medical advice</span><span><a href="/">Home</a></span></footer>
+  </main>
 
 <script>
 /* ============ ICONS ============ */
