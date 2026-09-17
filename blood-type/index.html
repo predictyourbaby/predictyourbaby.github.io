@@ -256,6 +256,43 @@
   footer a{text-decoration:none;color:var(--ink-soft);}
   footer a:hover{color:var(--ink);}
 </style>
+
+<style id="mobile-fix">
+/* Mobile polish: keep the site light and prevent cramped/overflowing layout */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="dark"]){
+    --paper:#F7F4EC !important; --paper2:#F1EDE1 !important; --ink:#242219 !important; --ink-soft:#5C594E !important;
+    --sage:#5F7A63 !important; --sage-deep:#3D5240 !important; --sage-pale:#E4EBE3 !important;
+    --coral:#C97A5A !important; --coral-pale:#F3E0D5 !important; --line:#DFD9C8 !important; --card:#FFFEFA !important;
+  }
+}
+html{color-scheme:light;}
+body{overflow-x:hidden;}
+@media (max-width:700px){
+  .topbar-inner{display:block;padding:12px 16px;}
+  .brand{justify-content:center;margin-bottom:10px;}
+  nav{width:100%;display:flex;overflow-x:auto;overflow-y:hidden;justify-content:flex-start;gap:2px;padding-bottom:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  nav::-webkit-scrollbar{display:none;}
+  nav a{font-size:.84rem;padding:8px 11px;flex:0 0 auto;}
+  main{width:100%;max-width:none;padding:0 16px 60px;}
+  .hero-wrap{padding:42px 0 28px;}
+  .hero-wrap h1{font-size:clamp(2.35rem,11vw,3rem);line-height:1.04;max-width:100%;letter-spacing:-.025em;}
+  .hero-wrap .lede{font-size:1rem;line-height:1.6;max-width:100%;} 
+  .trust-row{gap:12px 20px;}
+  .tool-grid{grid-template-columns:1fr;margin:30px 0 42px;}
+  .tool-card{padding:20px 18px;}
+  .tool-page-head h1{font-size:clamp(2.2rem,10vw,3rem);}
+  .tool-card img,.img-slot img{width:100%;height:auto;object-fit:cover;}
+  .tool-box,.calculator,.calc-card{max-width:100%;}
+}
+@media (max-width:420px){
+  .brand-name{font-size:1.05rem;}
+  .hero-wrap h1{font-size:2.25rem;}
+  .eyebrow-badge{font-size:.76rem;padding:6px 11px;}
+  .trust-item{font-size:.82rem;}
+  .btn-row button{width:100%;justify-content:center;}
+}
+</style>
 </head>
 <body>
 
