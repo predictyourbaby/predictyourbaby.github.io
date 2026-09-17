@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Baby Blood Type Predictor — ABO & Rh Inheritance Calculator</title>
 <meta name="description" content="Predict every blood type genetically possible for your baby from the parents' ABO and Rh blood types, with a clear inheritance explanation.">
-<link rel="canonical" id="canonicalTag" href="https://predictyourbaby.com/">
+<link rel="canonical" id="canonicalTag" href="https://predictyourbaby.com/blood-type/">
 
 <!-- Favicon (inline SVG, no separate file upload needed) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23F7F4EC' stroke='%23C97A5A' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%235F7A63'/%3E%3C/svg%3E">
@@ -293,6 +293,7 @@ body{overflow-x:hidden;}
   .btn-row button{width:100%;justify-content:center;}
 }
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can two O parents have a child who isn't type O?","acceptedAnswer":{"@type":"Answer","text":"No. Type O is genetically recessive with no dominant allele to mask, so two type-O parents can only have type-O children."}},{"@type":"Question","name":"Can a child have a blood type neither parent has?","acceptedAnswer":{"@type":"Answer","text":"Yes, in some combinations. For example, two type-A parents who are each secretly carrying an O allele can have a type-O child, since O is recessive and can hide for a generation."}},{"@type":"Question","name":"What determines Rh-positive vs Rh-negative?","acceptedAnswer":{"@type":"Answer","text":"Rh-positive is dominant. A child is Rh-negative only if they inherit the negative allele from both parents — meaning both parents must carry it, even if one or both are Rh-positive themselves."}},{"@type":"Question","name":"Why does the calculator show a range instead of one type?","acceptedAnswer":{"@type":"Answer","text":"Blood type depends on each parent's full genotype (e.g., whether a type-A parent is AA or AO), which isn't visible from blood type alone. The calculator shows every type genetically possible for your specific inputs."}},{"@type":"Question","name":"Does blood type ever indicate a mix-up at the hospital?","acceptedAnswer":{"@type":"Answer","text":"Occasionally people assume this, but it's rarely reliable — recessive alleles can produce a child's blood type that looks surprising on paper but is entirely consistent with the parents' true genetics."}},{"@type":"Question","name":"Is Rh incompatibility something to worry about?","acceptedAnswer":{"@type":"Answer","text":"If a mother is Rh-negative and the baby is Rh-positive, doctors routinely manage this with a standard treatment (anti-D immunoglobulin) — it's a well-understood, well-managed situation, not a rare emergency."}}]}</script>
 </head>
 <body>
 
@@ -314,7 +315,137 @@ body{overflow-x:hidden;}
   </div>
 </div>
 
-<main id="main"></main>
+<main id="main">
+    <div class="tool-eyebrow">Genetics calculator · Medium accuracy</div>
+    <h1 class="tool-heading">Baby blood type predictor</h1>
+    <p class="tool-sub">Select each parent's ABO and Rh blood type to see every blood type genetically possible for your baby.</p>
+    <div class="accuracy-row"><span class="chip chip-med">Medium accuracy</span></div>
+    <div class="panel" id="panel">
+    <div class="sub-label">Father</div>
+    <div class="field-row">
+      <div><label for="fa">ABO type</label><select id="fa"><option value="A">A</option><option value="B">B</option><option value="AB">AB</option><option value="O">O</option></select></div>
+      <div><label for="fr">Rh factor</label><select id="fr"><option value="Positive">Positive</option><option value="Negative">Negative</option></select></div>
+    </div>
+    <div class="sub-label">Mother</div>
+    <div class="field-row">
+      <div><label for="ma">ABO type</label><select id="ma"><option value="A">A</option><option value="B">B</option><option value="AB">AB</option><option value="O">O</option></select></div>
+      <div><label for="mr">Rh factor</label><select id="mr"><option value="Positive">Positive</option><option value="Negative">Negative</option></select></div>
+    </div>
+    <div class="btn-row"><button class="go" id="calc">Calculate</button><button class="reset" id="rst">Reset</button></div>
+    <div class="result" id="result">
+      <div class="result-label">Blood types genetically possible for your baby</div>
+      <div class="type-chips" id="typeChips"></div>
+      <div class="insight-box" id="insight"><div class="insight-tag"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2l1.6 4.9L16.5 8.5 11.6 10 10 15l-1.6-5L3.5 8.5 8.4 6.9 10 2z"></path></svg>What this means</div><p id="insightText"></p></div>
+      <div class="share-wrap">
+    <div class="share-caption">Share this result</div>
+    <div class="share-row" id="shareRow">
+      <a class="share-icon fb" data-net="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"></path></svg></a>
+      <a class="share-icon wa" data-net="whatsapp" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.94-.27-.1-.46-.15-.66.15-.2.3-.75.94-.92 1.13-.17.2-.34.22-.63.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.38-.07-.13-.27-.2-.57-.35zM12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.43A9.94 9.94 0 0012.02 22C17.55 22 22 17.52 22 12S17.55 2 12.02 2z"></path></svg></a>
+      <a class="share-icon pin" data-net="pinterest" target="_blank" rel="noopener" aria-label="Share on Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.86 6.35 9.32-.09-.79-.17-2.02.03-2.89.19-.79 1.23-5.05 1.23-5.05s-.31-.63-.31-1.55c0-1.45.84-2.53 1.89-2.53.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.89 1.55 1.89 1.86 0 3.29-1.96 3.29-4.79 0-2.5-1.8-4.26-4.36-4.26-2.97 0-4.71 2.23-4.71 4.53 0 .9.34 1.86.78 2.38.09.1.1.19.07.3-.08.32-.25 1.04-.29 1.18-.05.19-.15.23-.35.14-1.3-.6-2.11-2.5-2.11-4.02 0-3.27 2.38-6.28 6.85-6.28 3.6 0 6.4 2.56 6.4 5.99 0 3.57-2.25 6.45-5.38 6.45-1.05 0-2.04-.55-2.38-1.19l-.65 2.47c-.23.9-.86 2.02-1.28 2.71.97.3 2 .46 3.06.46 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg></a>
+      <a class="share-icon li" data-net="linkedin" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.56V9h3.56v11.45z"></path></svg></a>
+      <button type="button" class="share-icon ig" data-net="instagram" aria-label="Share on Instagram"><span class="share-tip">Link copied — paste in Instagram</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg></button>
+      <button type="button" class="share-icon copy" data-net="copy" aria-label="Copy link"><span class="share-tip">Copied!</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07l-1.5 1.5"></path><path d="M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07l1.5-1.5"></path></svg></button>
+    </div>
+  </div>
+      <div class="disclaimer">This shows every type genetically possible for these parents — not weighted odds — because each parent's full genotype (e.g. whether a type-A parent is AA or AO) isn't determinable from blood type alone.</div>
+    </div></div>
+    <div class="content">
+    <h2>How to use the baby blood type predictor</h2>
+    <ol>
+      <li><strong>Select the father's ABO blood type</strong> (A, B, AB or O) and Rh factor.</li>
+      <li><strong>Select the mother's ABO blood type</strong> and Rh factor the same way.</li>
+      <li><strong>Press Calculate</strong> to see every blood type genetically possible for your baby.</li>
+    </ol>
+    <div class="callout"><div class="callout-title"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0010 2zM8 16h4v1a2 2 0 01-4 0v-1z"></path></svg>Why you'll see a range, not one type</div><p>A person's blood type test only shows their phenotype (A, B, AB or O), not their full genotype. A type-A parent could be genetically AA or AO — and that hidden difference changes what's possible for their child. The calculator shows every outcome consistent with your inputs.</p></div>
+
+    <h2>How ABO blood type is inherited</h2>
+    <p>Blood type is set by a single gene with three common alleles: A, B, and O. <strong>A and B are co-dominant</strong> — if you inherit one of each, you're type AB, with both traits expressed rather than one masking the other. <strong>O is recessive</strong> to both — you need two O alleles to be type O, since a single A or B allele will dominate. This ABO inheritance chart is one of the most well-established patterns in classical genetics.</p>
+
+    <div class="chart-wrap"><div class="chart-title">Blood type distribution in the US (approximate)</div>
+    <div class="hbar-row">
+      <div class="hbar-label">O</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:#5F7A63"></div></div>
+      <div class="hbar-val">44%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">A</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:95%;background:#8FAE93"></div></div>
+      <div class="hbar-val">42%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">B</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:23%;background:#C97A5A"></div></div>
+      <div class="hbar-val">10%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">AB</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:9%;background:#DFA083"></div></div>
+      <div class="hbar-val">4%</div>
+    </div></div>
+
+    <h2>ABO inheritance chart</h2>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Parent 1</th><th>Parent 2</th><th>Possible child types</th></tr></thead>
+      <tbody>
+        <tr><td>O</td><td>O</td><td>O only</td></tr>
+        <tr><td>O</td><td>A</td><td>A or O</td></tr>
+        <tr><td>O</td><td>B</td><td>B or O</td></tr>
+        <tr><td>O</td><td>AB</td><td>A or B</td></tr>
+        <tr><td>A</td><td>A</td><td>A or O</td></tr>
+        <tr><td>A</td><td>B</td><td>A, B, AB or O</td></tr>
+        <tr><td>A</td><td>AB</td><td>A, B or AB</td></tr>
+        <tr><td>B</td><td>B</td><td>B or O</td></tr>
+        <tr><td>B</td><td>AB</td><td>A, B or AB</td></tr>
+        <tr><td>AB</td><td>AB</td><td>A, B or AB</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>How Rh factor (positive/negative) is inherited</h3>
+    <p>Rh-positive is dominant over Rh-negative. A child is only Rh-negative if they inherit a negative allele from both parents — which means two Rh-positive parents can still have an Rh-negative baby if both happen to be silent carriers, much like the recessive pattern seen in eye and hair color inheritance.</p>
+
+    <div class="img-slot"><img src="images/blood-type-chart.webp" alt="Blood type inheritance chart illustration" loading="lazy" onerror="this.outerHTML='&lt;div class=\'img-ph\'&gt;Image slot — replace with: images/blood-type-chart.webp&lt;/div&gt;'">
+    <div class="img-cap">Blood type inheritance chart illustration</div></div>
+
+    <h2>Terms related to blood type prediction</h2>
+    <dl class="glossary"><div class="gterm"><dt>ABO gene</dt><dd>The single gene on chromosome 9 that determines A, B, AB or O blood type based on which alleles a person inherits.</dd></div><div class="gterm"><dt>Co-dominance</dt><dd>When two different alleles are both fully expressed at once — the reason AB blood type shows both A and B markers rather than one overriding the other.</dd></div><div class="gterm"><dt>Rh factor</dt><dd>A separate protein marker (positive or negative) inherited independently of ABO type, most relevant during pregnancy for Rh compatibility between mother and baby.</dd></div><div class="gterm"><dt>Universal donor / recipient</dt><dd>O-negative blood is considered the universal donor type; AB-positive is considered the universal recipient type, relevant in transfusion medicine.</dd></div><div class="gterm"><dt>Genotype (blood type)</dt><dd>The specific pair of alleles a person carries — for example AO or AA — which isn't distinguishable from a standard blood type test alone.</dd></div></dl>
+
+    <h2>Limitations of blood type prediction</h2>
+    <ul>
+      <li><strong>Genotype is hidden</strong> — a blood type test alone can't tell you if a type-A or type-B parent is heterozygous or homozygous.</li>
+      <li><strong>This tool shows possibilities, not odds</strong> — without genotype testing, precise percentages would be misleading.</li>
+      <li><strong>Rare subtypes exist</strong> — the Bombay phenotype and other rare variants aren't reflected in this simplified model.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+    <div class="faq-item" data-i="0">
+      <button class="faq-q" type="button">Can two O parents have a child who isn't type O?<span class="chev">+</span></button>
+      <div class="faq-a"><p>No. Type O is genetically recessive with no dominant allele to mask, so two type-O parents can only have type-O children.</p></div>
+    </div>
+    <div class="faq-item" data-i="1">
+      <button class="faq-q" type="button">Can a child have a blood type neither parent has?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Yes, in some combinations. For example, two type-A parents who are each secretly carrying an O allele can have a type-O child, since O is recessive and can hide for a generation.</p></div>
+    </div>
+    <div class="faq-item" data-i="2">
+      <button class="faq-q" type="button">What determines Rh-positive vs Rh-negative?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Rh-positive is dominant. A child is Rh-negative only if they inherit the negative allele from both parents — meaning both parents must carry it, even if one or both are Rh-positive themselves.</p></div>
+    </div>
+    <div class="faq-item" data-i="3">
+      <button class="faq-q" type="button">Why does the calculator show a range instead of one type?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Blood type depends on each parent's full genotype (e.g., whether a type-A parent is AA or AO), which isn't visible from blood type alone. The calculator shows every type genetically possible for your specific inputs.</p></div>
+    </div>
+    <div class="faq-item" data-i="4">
+      <button class="faq-q" type="button">Does blood type ever indicate a mix-up at the hospital?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Occasionally people assume this, but it's rarely reliable — recessive alleles can produce a child's blood type that looks surprising on paper but is entirely consistent with the parents' true genetics.</p></div>
+    </div>
+    <div class="faq-item" data-i="5">
+      <button class="faq-q" type="button">Is Rh incompatibility something to worry about?<span class="chev">+</span></button>
+      <div class="faq-a"><p>If a mother is Rh-negative and the baby is Rh-positive, doctors routinely manage this with a standard treatment (anti-D immunoglobulin) — it's a well-understood, well-managed situation, not a rare emergency.</p></div>
+    </div></div>
+
+    <div class="related-row"><a class="related-chip" href="/due-date" data-link="">Due date calculator →</a><a class="related-chip" href="/eye-color" data-link="">Eye color predictor →</a><a class="related-chip" href="/height" data-link="">Height predictor →</a></div>
+  </div>
+    <footer><span>© 2026 predictyourbaby · Educational and entertainment use only · Not medical advice</span><span><a href="/">Home</a></span></footer>
+  </main>
 
 <script>
 /* ============ ICONS ============ */
