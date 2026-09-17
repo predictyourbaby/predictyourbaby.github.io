@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Baby Eye Color Calculator — Predict Your Baby's Eyes | Genetics Chart</title>
 <meta name="description" content="Predict your baby's eye color with a genetics-based calculator using both parents' eye colors and optional grandparents. Learn how OCA2 and HERC2 influence eye color.">
-<link rel="canonical" id="canonicalTag" href="https://predictyourbaby.com/">
+<link rel="canonical" id="canonicalTag" href="https://predictyourbaby.com/eye-color/">
 
 <!-- Favicon (inline SVG, no separate file upload needed) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23F7F4EC' stroke='%23C97A5A' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%235F7A63'/%3E%3C/svg%3E">
@@ -293,6 +293,7 @@ body{overflow-x:hidden;}
   .btn-row button{width:100%;justify-content:center;}
 }
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can two blue-eyed parents have a brown-eyed baby?","acceptedAnswer":{"@type":"Answer","text":"It's uncommon but genuinely possible. If each parent carries a brown-eye allele that's suppressed in them, a child inheriting it from both can express brown."}},{"@type":"Question","name":"Can two brown-eyed parents have a blue-eyed baby?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it's more common than the reverse. If both parents carry a recessive blue allele — often visible in a blue-eyed grandparent — roughly one in four of their children may have blue eyes."}},{"@type":"Question","name":"What's the rarest eye color?","acceptedAnswer":{"@type":"Answer","text":"Among standard colors, green is the rarest at about 2 percent of people worldwide. Gray and amber are also uncommon."}},{"@type":"Question","name":"Why do the grandparent fields say optional?","acceptedAnswer":{"@type":"Answer","text":"The calculator produces a result from the parents alone. Grandparent data improves accuracy by revealing recessive genes, but it isn't required."}},{"@type":"Question","name":"Does this calculator store what I enter?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser — nothing is sent to a server, saved, or linked to you."}},{"@type":"Question","name":"Is the calculator medically accurate?","acceptedAnswer":{"@type":"Answer","text":"It reflects established inheritance patterns but isn't a genetic test. For questions about inherited eye conditions, consult an ophthalmologist or genetic counselor."}}]}</script>
 </head>
 <body>
 
@@ -314,7 +315,154 @@ body{overflow-x:hidden;}
   </div>
 </div>
 
-<main id="main"></main>
+<main id="main">
+    <div class="tool-eyebrow">Genetics calculator · High accuracy</div>
+    <h1 class="tool-heading">Baby eye color calculator</h1>
+    <p class="tool-sub">Select both parents' eye colors — and grandparents if you know them — to see the probability of each eye color for your baby.</p>
+    <div class="accuracy-row"><span class="chip chip-high">High accuracy</span></div>
+    <div class="panel" id="panel">
+    <div class="sub-label">Parents</div>
+    <div class="field-row">
+      <div><label for="p1">Father's eye color</label><select id="p1"><option value="Brown">Brown</option><option value="Hazel">Hazel</option><option value="Green">Green</option><option value="Blue">Blue</option><option value="Gray">Gray</option><option value="Amber">Amber</option></select></div>
+      <div><label for="p2">Mother's eye color</label><select id="p2"><option value="Brown">Brown</option><option value="Hazel">Hazel</option><option value="Green">Green</option><option value="Blue">Blue</option><option value="Gray">Gray</option><option value="Amber">Amber</option></select></div>
+    </div>
+    <div class="sub-label">Grandparents (optional — improves accuracy)</div>
+    <div class="field-row">
+      <div><label for="g1">Paternal grandfather</label><select id="g1"><option value="">Unknown / not sure</option><option value="Brown">Brown</option><option value="Hazel">Hazel</option><option value="Green">Green</option><option value="Blue">Blue</option><option value="Gray">Gray</option><option value="Amber">Amber</option></select></div>
+      <div><label for="g2">Paternal grandmother</label><select id="g2"><option value="">Unknown / not sure</option><option value="Brown">Brown</option><option value="Hazel">Hazel</option><option value="Green">Green</option><option value="Blue">Blue</option><option value="Gray">Gray</option><option value="Amber">Amber</option></select></div>
+    </div>
+    <div class="field-row">
+      <div><label for="g3">Maternal grandfather</label><select id="g3"><option value="">Unknown / not sure</option><option value="Brown">Brown</option><option value="Hazel">Hazel</option><option value="Green">Green</option><option value="Blue">Blue</option><option value="Gray">Gray</option><option value="Amber">Amber</option></select></div>
+      <div><label for="g4">Maternal grandmother</label><select id="g4"><option value="">Unknown / not sure</option><option value="Brown">Brown</option><option value="Hazel">Hazel</option><option value="Green">Green</option><option value="Blue">Blue</option><option value="Gray">Gray</option><option value="Amber">Amber</option></select></div>
+    </div>
+    <div class="btn-row"><button class="go" id="calc">Calculate</button><button class="reset" id="rst">Reset</button></div>
+    <div class="result" id="result">
+      <div class="result-label">Estimated probability of each eye color</div>
+      <div id="bars"></div>
+      <div class="insight-box" id="insight"><div class="insight-tag"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2l1.6 4.9L16.5 8.5 11.6 10 10 15l-1.6-5L3.5 8.5 8.4 6.9 10 2z"></path></svg>What this means</div><p id="insightText"></p></div>
+      <div class="share-wrap">
+    <div class="share-caption">Share this result</div>
+    <div class="share-row" id="shareRow">
+      <a class="share-icon fb" data-net="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"></path></svg></a>
+      <a class="share-icon wa" data-net="whatsapp" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.94-.27-.1-.46-.15-.66.15-.2.3-.75.94-.92 1.13-.17.2-.34.22-.63.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.38-.07-.13-.27-.2-.57-.35zM12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.43A9.94 9.94 0 0012.02 22C17.55 22 22 17.52 22 12S17.55 2 12.02 2z"></path></svg></a>
+      <a class="share-icon pin" data-net="pinterest" target="_blank" rel="noopener" aria-label="Share on Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.86 6.35 9.32-.09-.79-.17-2.02.03-2.89.19-.79 1.23-5.05 1.23-5.05s-.31-.63-.31-1.55c0-1.45.84-2.53 1.89-2.53.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.89 1.55 1.89 1.86 0 3.29-1.96 3.29-4.79 0-2.5-1.8-4.26-4.36-4.26-2.97 0-4.71 2.23-4.71 4.53 0 .9.34 1.86.78 2.38.09.1.1.19.07.3-.08.32-.25 1.04-.29 1.18-.05.19-.15.23-.35.14-1.3-.6-2.11-2.5-2.11-4.02 0-3.27 2.38-6.28 6.85-6.28 3.6 0 6.4 2.56 6.4 5.99 0 3.57-2.25 6.45-5.38 6.45-1.05 0-2.04-.55-2.38-1.19l-.65 2.47c-.23.9-.86 2.02-1.28 2.71.97.3 2 .46 3.06.46 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg></a>
+      <a class="share-icon li" data-net="linkedin" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.56V9h3.56v11.45z"></path></svg></a>
+      <button type="button" class="share-icon ig" data-net="instagram" aria-label="Share on Instagram"><span class="share-tip">Link copied — paste in Instagram</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg></button>
+      <button type="button" class="share-icon copy" data-net="copy" aria-label="Copy link"><span class="share-tip">Copied!</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07l-1.5 1.5"></path><path d="M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07l1.5-1.5"></path></svg></button>
+    </div>
+  </div>
+      <div class="disclaimer">Based on general dominance patterns across the OCA2 and HERC2 genes. Eye color is polygenic — treat this as an educated estimate, not a guarantee.</div>
+    </div></div>
+    <div class="content">
+    <h2>How to use the baby eye color calculator</h2>
+    <ol>
+      <li><strong>Select the father's eye color</strong> from the first dropdown.</li>
+      <li><strong>Select the mother's eye color</strong> from the second dropdown.</li>
+      <li><strong>Add grandparent colors if you know them.</strong> Each one sharpens the estimate by revealing recessive genes the parents carry but don't show.</li>
+      <li><strong>Press Calculate</strong> to see a percentage for every possible eye color, ranked most to least likely.</li>
+      <li><strong>Read the "What this means" summary,</strong> then use the share row to send the eye color prediction to a partner or family group chat.</li>
+    </ol>
+    <div class="callout"><div class="callout-title"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0010 2zM8 16h4v1a2 2 0 01-4 0v-1z"></path></svg>Tip</div><p>If an eye reads as a brown-green mix, choose hazel. If you're torn between two shades, pick the darker one — people tend to describe their own eyes lighter than they measure.</p></div>
+
+    <h2>How baby eye color is inherited</h2>
+    <p>Eye color comes from melanin in the iris. Brown eyes have abundant melanin. Blue eyes have very little — their color isn't pigment at all, but light scattering off the iris fibers, the same effect that makes the sky look blue. Green and hazel sit in between.</p>
+    <p>Two genes do most of the work. <strong>OCA2</strong> regulates melanin production inside iris cells. <strong>HERC2</strong>, next to it on chromosome 15, holds a regulatory switch for OCA2 — a single variant there (rs12913832) is the main genetic switch between brown and blue eyes in people of European descent. At least sixteen additional genes contribute smaller effects, which is why eye color sits on a spectrum rather than in tidy boxes and why a simple baby eye color chart by parents can only ever be an approximation of true polygenic inheritance.</p>
+
+    <div class="chart-wrap"><div class="chart-title">World eye color distribution (approximate)</div>
+    <div class="hbar-row">
+      <div class="hbar-label">Brown</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:#6B4423"></div></div>
+      <div class="hbar-val">79%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Blue</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:10%;background:#4A6E8F"></div></div>
+      <div class="hbar-val">8%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Hazel</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:6%;background:#8B723A"></div></div>
+      <div class="hbar-val">5%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Green</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:#5F7A4A"></div></div>
+      <div class="hbar-val">2%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Other</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:8%;background:#7E8288"></div></div>
+      <div class="hbar-val">6%</div>
+    </div></div>
+
+    <h3>Why grandparents matter</h3>
+    <p>Recessive alleles can pass through a generation without showing. Two brown-eyed parents from all-brown-eyed families have a different genetic profile from two brown-eyed parents who each had a blue-eyed mother — even though both couples look identical. In the second case, the odds of a blue-eyed child rise substantially. This is the same logic behind a Punnett square eye color diagram, which maps how dominant and recessive eye color genes combine across a family tree.</p>
+
+    <h2>Eye color probability chart</h2>
+    <p>Approximate probabilities for common parent combinations — general tendencies, not fixed outcomes.</p>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Parent 1</th><th>Parent 2</th><th>Brown</th><th>Blue</th><th>Green</th><th>Hazel</th><th>Gray/Amber</th></tr></thead>
+      <tbody>
+        <tr><td>Brown</td><td>Brown</td><td>75%</td><td>6%</td><td>7%</td><td>8%</td><td>4%</td></tr>
+        <tr><td>Brown</td><td>Blue</td><td>50%</td><td>31%</td><td>7%</td><td>8%</td><td>4%</td></tr>
+        <tr><td>Brown</td><td>Green</td><td>50%</td><td>8%</td><td>30%</td><td>8%</td><td>4%</td></tr>
+        <tr><td>Brown</td><td>Hazel</td><td>50%</td><td>8%</td><td>8%</td><td>30%</td><td>4%</td></tr>
+        <tr><td>Blue</td><td>Blue</td><td>1%</td><td>81%</td><td>7%</td><td>7%</td><td>4%</td></tr>
+        <tr><td>Blue</td><td>Green</td><td>1%</td><td>40%</td><td>40%</td><td>8%</td><td>11%</td></tr>
+        <tr><td>Blue</td><td>Hazel</td><td>7%</td><td>31%</td><td>30%</td><td>25%</td><td>7%</td></tr>
+        <tr><td>Green</td><td>Green</td><td>1%</td><td>25%</td><td>61%</td><td>7%</td><td>6%</td></tr>
+        <tr><td>Green</td><td>Hazel</td><td>7%</td><td>20%</td><td>30%</td><td>36%</td><td>7%</td></tr>
+        <tr><td>Hazel</td><td>Hazel</td><td>8%</td><td>15%</td><td>25%</td><td>45%</td><td>7%</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>The six eye colors explained</h2>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="dot" style="background:#6B4423"></div><div class="nm">Brown</div><div class="sub">70–90% worldwide</div></div>
+      <div class="swatch"><div class="dot" style="background:#4A6E8F"></div><div class="nm">Blue</div><div class="sub">~8–10% worldwide</div></div>
+      <div class="swatch"><div class="dot" style="background:#5F7A4A"></div><div class="nm">Green</div><div class="sub">~2% worldwide</div></div>
+      <div class="swatch"><div class="dot" style="background:#8B723A"></div><div class="nm">Hazel</div><div class="sub">~5% worldwide</div></div>
+      <div class="swatch"><div class="dot" style="background:#7E8288"></div><div class="nm">Gray</div><div class="sub">Under 1%</div></div>
+      <div class="swatch"><div class="dot" style="background:#B9852F"></div><div class="nm">Amber</div><div class="sub">Rare</div></div>
+    </div>
+
+    <h2>When does a baby's eye color settle?</h2>
+    <div class="img-slot"><img src="images/newborn-eyes.webp" alt="Close-up of a newborn baby's eyes" loading="lazy" onerror="this.outerHTML='&lt;div class=\'img-ph\'&gt;Image slot — replace with: images/newborn-eyes.webp&lt;/div&gt;'">
+    <div class="img-cap">Close-up of a newborn baby's eyes</div></div>
+    <p>Many babies, particularly of European descent, are born with grayish or slate-blue eyes regardless of their eventual color. Melanin production in the iris isn't complete at birth and increases with light exposure over the following months. Most children settle into their permanent color by their first birthday, though some continue shifting until around age three — one reason a newborn eye color chart is far less reliable than a chart based on parents' adult eye color.</p>
+
+    <h2>Genetics terms related to eye color prediction</h2>
+    <dl class="glossary"><div class="gterm"><dt>Allele</dt><dd>One version of a gene. A person carries two alleles for each pigmentation gene, one from each parent.</dd></div><div class="gterm"><dt>Dominant / recessive</dt><dd>A dominant allele (like brown) shows up even when paired with a different allele; a recessive allele (like blue) only shows up when paired with another recessive allele.</dd></div><div class="gterm"><dt>Genotype vs. phenotype</dt><dd>Genotype is the actual genetic makeup a person carries; phenotype is what's visibly expressed — like eye color. Two people can share a phenotype but carry different genotypes.</dd></div><div class="gterm"><dt>Carrier</dt><dd>Someone who carries a recessive allele without showing it — a brown-eyed parent can be a hidden carrier of the blue-eye allele.</dd></div><div class="gterm"><dt>Polygenic trait</dt><dd>A trait, like eye color, shaped by many genes acting together rather than a single gene switch.</dd></div><div class="gterm"><dt>Heterochromia</dt><dd>A rare condition where a person's two eyes are different colors, caused by uneven melanin distribution rather than inheritance alone.</dd></div></dl>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+    <div class="faq-item" data-i="0">
+      <button class="faq-q" type="button">Can two blue-eyed parents have a brown-eyed baby?<span class="chev">+</span></button>
+      <div class="faq-a"><p>It's uncommon but genuinely possible. If each parent carries a brown-eye allele that's suppressed in them, a child inheriting it from both can express brown.</p></div>
+    </div>
+    <div class="faq-item" data-i="1">
+      <button class="faq-q" type="button">Can two brown-eyed parents have a blue-eyed baby?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Yes, and it's more common than the reverse. If both parents carry a recessive blue allele — often visible in a blue-eyed grandparent — roughly one in four of their children may have blue eyes.</p></div>
+    </div>
+    <div class="faq-item" data-i="2">
+      <button class="faq-q" type="button">What's the rarest eye color?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Among standard colors, green is the rarest at about 2 percent of people worldwide. Gray and amber are also uncommon.</p></div>
+    </div>
+    <div class="faq-item" data-i="3">
+      <button class="faq-q" type="button">Why do the grandparent fields say optional?<span class="chev">+</span></button>
+      <div class="faq-a"><p>The calculator produces a result from the parents alone. Grandparent data improves accuracy by revealing recessive genes, but it isn't required.</p></div>
+    </div>
+    <div class="faq-item" data-i="4">
+      <button class="faq-q" type="button">Does this calculator store what I enter?<span class="chev">+</span></button>
+      <div class="faq-a"><p>No. Everything runs in your browser — nothing is sent to a server, saved, or linked to you.</p></div>
+    </div>
+    <div class="faq-item" data-i="5">
+      <button class="faq-q" type="button">Is the calculator medically accurate?<span class="chev">+</span></button>
+      <div class="faq-a"><p>It reflects established inheritance patterns but isn't a genetic test. For questions about inherited eye conditions, consult an ophthalmologist or genetic counselor.</p></div>
+    </div></div>
+
+    <div class="related-row"><a class="related-chip" href="/hair" data-link="">Hair color predictor →</a><a class="related-chip" href="/height" data-link="">Height predictor →</a><a class="related-chip" href="/blood-type" data-link="">Blood type predictor →</a></div>
+  </div>
+    <footer><span>© 2026 predictyourbaby · Educational and entertainment use only · Not medical advice</span><span><a href="/">Home</a></span></footer>
+  </main>
 
 <script>
 /* ============ ICONS ============ */
