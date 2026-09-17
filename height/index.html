@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Baby Height Predictor — Estimate Your Child's Adult Height</title>
 <meta name="description" content="Estimate your child's adult height from the mother's and father's heights using the mid-parental height method. Includes a likely range.">
-<link rel="canonical" id="canonicalTag" href="https://predictyourbaby.com/">
+<link rel="canonical" id="canonicalTag" href="https://predictyourbaby.com/height/">
 
 <!-- Favicon (inline SVG, no separate file upload needed) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23F7F4EC' stroke='%23C97A5A' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%235F7A63'/%3E%3C/svg%3E">
@@ -293,6 +293,7 @@ body{overflow-x:hidden;}
   .btn-row button{width:100%;justify-content:center;}
 }
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How accurate is the mid-parental height method?","acceptedAnswer":{"@type":"Answer","text":"It's a well-established estimate, typically accurate to within several centimeters, but it's a starting reference rather than a precise prediction."}},{"@type":"Question","name":"Can a child be taller than both parents?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it's common. Children inherit a mix of alleles, and better nutrition than a parent's generation had can also raise the outcome."}},{"@type":"Question","name":"Does sleep affect height?","acceptedAnswer":{"@type":"Answer","text":"Growth hormone is released mainly during deep sleep, so chronically insufficient sleep during the growing years can affect growth."}},{"@type":"Question","name":"Do sports like basketball make children taller?","acceptedAnswer":{"@type":"Answer","text":"No. Exercise supports general health and bone development but doesn't increase final adult height beyond genetic potential."}},{"@type":"Question","name":"Can I use this for a child who's already born?","acceptedAnswer":{"@type":"Answer","text":"Yes — the formula only uses parental heights, so it works at any age. For a child already growing, a pediatrician's growth-chart tracking is more informative."}}]}</script>
 </head>
 <body>
 
@@ -314,7 +315,112 @@ body{overflow-x:hidden;}
   </div>
 </div>
 
-<main id="main"></main>
+<main id="main">
+    <div class="tool-eyebrow">Growth calculator · High accuracy</div>
+    <h1 class="tool-heading">Baby height predictor</h1>
+    <p class="tool-sub">Enter both parents' heights to estimate your child's adult height using the mid-parental height method used by pediatricians.</p>
+    <div class="accuracy-row"><span class="chip chip-high">High accuracy</span></div>
+    <div class="panel" id="panel">
+    <div class="field-row">
+      <div><label for="mh">Mother's height (cm)</label><input type="number" id="mh" placeholder="e.g. 162" min="120" max="210"></div>
+      <div><label for="fh">Father's height (cm)</label><input type="number" id="fh" placeholder="e.g. 177" min="120" max="220"></div>
+    </div>
+    <div class="field-row">
+      <div><label for="sex">Baby's sex</label><select id="sex"><option value="boy">Boy</option><option value="girl">Girl</option></select></div>
+      <div></div>
+    </div>
+    <div class="btn-row"><button class="go" id="calc">Calculate</button><button class="reset" id="rst">Reset</button></div>
+    <div class="result" id="result">
+      <div class="result-label">Estimated adult height</div>
+      <div class="big-result" id="hres"></div>
+      <div id="hrange" style="color:var(--ink-soft);font-size:0.92rem;"></div>
+      <div class="insight-box" id="insight"><div class="insight-tag"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2l1.6 4.9L16.5 8.5 11.6 10 10 15l-1.6-5L3.5 8.5 8.4 6.9 10 2z"></path></svg>What this means</div><p id="insightText"></p></div>
+      <div class="share-wrap">
+    <div class="share-caption">Share this result</div>
+    <div class="share-row" id="shareRow">
+      <a class="share-icon fb" data-net="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"></path></svg></a>
+      <a class="share-icon wa" data-net="whatsapp" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.94-.27-.1-.46-.15-.66.15-.2.3-.75.94-.92 1.13-.17.2-.34.22-.63.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.38-.07-.13-.27-.2-.57-.35zM12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.43A9.94 9.94 0 0012.02 22C17.55 22 22 17.52 22 12S17.55 2 12.02 2z"></path></svg></a>
+      <a class="share-icon pin" data-net="pinterest" target="_blank" rel="noopener" aria-label="Share on Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.86 6.35 9.32-.09-.79-.17-2.02.03-2.89.19-.79 1.23-5.05 1.23-5.05s-.31-.63-.31-1.55c0-1.45.84-2.53 1.89-2.53.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.89 1.55 1.89 1.86 0 3.29-1.96 3.29-4.79 0-2.5-1.8-4.26-4.36-4.26-2.97 0-4.71 2.23-4.71 4.53 0 .9.34 1.86.78 2.38.09.1.1.19.07.3-.08.32-.25 1.04-.29 1.18-.05.19-.15.23-.35.14-1.3-.6-2.11-2.5-2.11-4.02 0-3.27 2.38-6.28 6.85-6.28 3.6 0 6.4 2.56 6.4 5.99 0 3.57-2.25 6.45-5.38 6.45-1.05 0-2.04-.55-2.38-1.19l-.65 2.47c-.23.9-.86 2.02-1.28 2.71.97.3 2 .46 3.06.46 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg></a>
+      <a class="share-icon li" data-net="linkedin" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.56V9h3.56v11.45z"></path></svg></a>
+      <button type="button" class="share-icon ig" data-net="instagram" aria-label="Share on Instagram"><span class="share-tip">Link copied — paste in Instagram</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg></button>
+      <button type="button" class="share-icon copy" data-net="copy" aria-label="Copy link"><span class="share-tip">Copied!</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07l-1.5 1.5"></path><path d="M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07l1.5-1.5"></path></svg></button>
+    </div>
+  </div>
+      <div class="disclaimer">Mid-parental height method. About 68% of children fall within ±8.5 cm of this estimate. Nutrition, health and hormonal factors also affect final height.</div>
+    </div></div>
+    <div class="content">
+    <h2>How to use the baby height predictor</h2>
+    <ol>
+      <li><strong>Enter the mother's height in centimeters</strong> (feet × 30.48 + inches × 2.54 if converting).</li>
+      <li><strong>Enter the father's height in centimeters.</strong></li>
+      <li><strong>Select the baby's sex</strong> — adult men and women differ in average height by about 13 cm.</li>
+      <li><strong>Press Calculate</strong> to see the estimated adult height, its range, and what it means.</li>
+    </ol>
+    <div class="callout"><div class="callout-title"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0010 2zM8 16h4v1a2 2 0 01-4 0v-1z"></path></svg>Tip</div><p>Measure without shoes. A 2 cm error in a parent's height shifts the child's estimate by about 1 cm.</p></div>
+
+    <h2>How the mid-parental height method works</h2>
+    <ul>
+      <li><strong>For boys:</strong> (mother's height + father's height) ÷ 2, then add 6.5 cm</li>
+      <li><strong>For girls:</strong> (mother's height + father's height) ÷ 2, then subtract 6.5 cm</li>
+    </ul>
+    <p>The result is a midpoint — roughly 68% of children land within ±8.5 cm of it, which is why the calculator reports a range rather than one number. This same formula underlies most child growth potential calculators used informally by pediatricians as a quick reference point, though it's never a substitute for tracking a child's actual growth chart and percentile over time.</p>
+
+    <div class="chart-wrap"><div class="chart-title">Share of adult height explained by genetics vs environment</div>
+    <div class="hbar-row">
+      <div class="hbar-label">Genetics</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:#5F7A63"></div></div>
+      <div class="hbar-val">70%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Environment</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:43%;background:#C97A5A"></div></div>
+      <div class="hbar-val">30%</div>
+    </div></div>
+
+    <h2>How much of height is genetic?</h2>
+    <p>Twin studies attribute roughly 60–80% of height variation to genetics, spread across over 700 identified genetic variants — unlike eye color, no small set of genes dominates. The rest comes from nutrition, sleep, chronic illness and hormonal factors during the growing years, all of which feed into what's often called a child's genetic height potential.</p>
+
+    <h2>When do children stop growing?</h2>
+    <div class="img-slot"><img src="images/measuring-height.webp" alt="Child being measured against a height chart" loading="lazy" onerror="this.outerHTML='&lt;div class=\'img-ph\'&gt;Image slot — replace with: images/measuring-height.webp&lt;/div&gt;'">
+    <div class="img-cap">Child being measured against a height chart</div></div>
+    <p>Girls typically finish growing between 14–16, boys between 16–18, when growth plates close under the influence of puberty hormones. Growth isn't steady — infants grow ~25 cm in year one, slow to 5–6 cm/year in mid-childhood, then spurt 8–12 cm/year at puberty's peak.</p>
+
+    <h2>Terms related to height prediction</h2>
+    <dl class="glossary"><div class="gterm"><dt>Mid-parental height</dt><dd>The average of both parents' heights, the base figure this formula adjusts up or down depending on the child's sex.</dd></div><div class="gterm"><dt>Growth percentile</dt><dd>Where a child's height ranks compared to others their age and sex, tracked on a standardized growth chart over time.</dd></div><div class="gterm"><dt>Growth plates</dt><dd>Areas of developing cartilage near the ends of long bones; height stops increasing once these plates fuse, usually by late adolescence.</dd></div><div class="gterm"><dt>Growth hormone</dt><dd>A hormone released mainly during deep sleep that drives height increases throughout childhood and puberty.</dd></div></dl>
+
+    <h2>Limitations of height prediction</h2>
+    <ul>
+      <li><strong>It's a statistical midpoint</strong> — individual outcomes vary widely within the normal range.</li>
+      <li><strong>It assumes typical growth conditions</strong> — chronic illness or nutritional shortfalls aren't accounted for.</li>
+      <li><strong>It can't detect medical causes</strong> — growth hormone deficiency requires clinical evaluation, not a formula.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+    <div class="faq-item" data-i="0">
+      <button class="faq-q" type="button">How accurate is the mid-parental height method?<span class="chev">+</span></button>
+      <div class="faq-a"><p>It's a well-established estimate, typically accurate to within several centimeters, but it's a starting reference rather than a precise prediction.</p></div>
+    </div>
+    <div class="faq-item" data-i="1">
+      <button class="faq-q" type="button">Can a child be taller than both parents?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Yes, and it's common. Children inherit a mix of alleles, and better nutrition than a parent's generation had can also raise the outcome.</p></div>
+    </div>
+    <div class="faq-item" data-i="2">
+      <button class="faq-q" type="button">Does sleep affect height?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Growth hormone is released mainly during deep sleep, so chronically insufficient sleep during the growing years can affect growth.</p></div>
+    </div>
+    <div class="faq-item" data-i="3">
+      <button class="faq-q" type="button">Do sports like basketball make children taller?<span class="chev">+</span></button>
+      <div class="faq-a"><p>No. Exercise supports general health and bone development but doesn't increase final adult height beyond genetic potential.</p></div>
+    </div>
+    <div class="faq-item" data-i="4">
+      <button class="faq-q" type="button">Can I use this for a child who's already born?<span class="chev">+</span></button>
+      <div class="faq-a"><p>Yes — the formula only uses parental heights, so it works at any age. For a child already growing, a pediatrician's growth-chart tracking is more informative.</p></div>
+    </div></div>
+
+    <div class="related-row"><a class="related-chip" href="/eye-color" data-link="">Eye color predictor →</a><a class="related-chip" href="/due-date" data-link="">Due date calculator →</a><a class="related-chip" href="/gender" data-link="">Gender predictor →</a></div>
+  </div>
+    <footer><span>© 2026 predictyourbaby · Educational and entertainment use only · Not medical advice</span><span><a href="/">Home</a></span></footer>
+  </main>
 
 <script>
 /* ============ ICONS ============ */
