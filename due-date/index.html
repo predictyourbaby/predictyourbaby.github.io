@@ -138,6 +138,11 @@
   .tool-heading{font-size:2.2rem;max-width:20ch;margin-bottom:12px;}
   .tool-sub{color:var(--ink-soft);max-width:58ch;line-height:1.55;margin-bottom:14px;}
   .accuracy-row{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;}
+  .byline{display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--ink-soft);margin:4px 0 20px;flex-wrap:wrap;}
+  .byline .dot{width:4px;height:4px;border-radius:50%;background:var(--ink-soft);flex-shrink:0;}
+  .sources-list{font-size:0.85rem;line-height:1.7;color:var(--ink-soft);}
+  .sources-list a{color:var(--sage-deep);}
+  .content sup a{color:var(--sage-deep);text-decoration:none;}
 
   .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:32px;box-shadow:0 1px 2px rgba(0,0,0,0.03);}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
@@ -769,6 +774,7 @@ function renderHome(main){
         <li><strong>Genotype isn't visible from phenotype</strong> — for hair, eye color and blood type, a parent's own appearance doesn't reveal every gene they carry.</li>
         <li><strong>No consumer tool matches genetic testing</strong> — services analyzing dozens of pigmentation SNPs or a lab blood panel are far more precise than any calculator.</li>
       </ul>
+      <p style="font-size:0.85rem;color:var(--ink-soft);">Content on this site is checked against <a href="https://medlineplus.gov/genetics/" target="_blank" rel="noopener noreferrer" style="color:var(--sage-deep);">NIH MedlinePlus Genetics</a>, the <a href="https://www.cdc.gov/growthcharts/" target="_blank" rel="noopener noreferrer" style="color:var(--sage-deep);">CDC</a>, and <a href="https://www.acog.org/womens-health/faqs/Prenatal-Genetic-Screening-Tests" target="_blank" rel="noopener noreferrer" style="color:var(--sage-deep);">ACOG</a>. Each calculator page lists its specific sources.</p>
 
       <div class="callout coral">
         <div class="callout-title">${ICONS.lock}Your privacy</div>
@@ -1067,7 +1073,7 @@ function contentEyeColor(){
 
     <h2>How baby eye color is inherited</h2>
     <p>Eye color comes from melanin in the iris. Brown eyes have abundant melanin. Blue eyes have very little — their color isn't pigment at all, but light scattering off the iris fibers, the same effect that makes the sky look blue. Green and hazel sit in between.</p>
-    <p>Two genes do most of the work. <strong>OCA2</strong> regulates melanin production inside iris cells. <strong>HERC2</strong>, next to it on chromosome 15, holds a regulatory switch for OCA2 — a single variant there (rs12913832) is the main genetic switch between brown and blue eyes in people of European descent. At least sixteen additional genes contribute smaller effects, which is why eye color sits on a spectrum rather than in tidy boxes and why a simple baby eye color chart by parents can only ever be an approximation of true polygenic inheritance.</p>
+    <p>Two genes do most of the work. <strong>OCA2</strong> regulates melanin production inside iris cells. <strong>HERC2</strong>, next to it on chromosome 15, holds a regulatory switch for OCA2 — a single variant there (rs12913832) is the main genetic switch between brown and blue eyes in people of European descent.<sup><a href="https://medlineplus.gov/genetics/understanding/traits/eyecolor" target="_blank" rel="noopener noreferrer">[1]</a></sup> At least sixteen additional genes contribute smaller effects, which is why eye color sits on a spectrum rather than in tidy boxes and why a simple baby eye color chart by parents can only ever be an approximation of true polygenic inheritance.<sup><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2427173" target="_blank" rel="noopener noreferrer">[2]</a></sup></p>
 
     ${hbarChart("World eye color distribution (approximate)", [
       {label:"Brown", val:79, color:"#6B4423"},
@@ -1124,6 +1130,12 @@ function contentEyeColor(){
       ["Heterochromia","A rare condition where a person's two eyes are different colors, caused by uneven melanin distribution rather than inheritance alone."]
     ])}
 
+    <h2>Sources</h2>
+    <ol class="sources-list">
+      <li>National Library of Medicine, MedlinePlus Genetics — <a href="https://medlineplus.gov/genetics/understanding/traits/eyecolor" target="_blank" rel="noopener noreferrer">Is eye color determined by genetics?</a></li>
+      <li>Sturm et al., American Journal of Human Genetics (NIH/PMC) — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2427173" target="_blank" rel="noopener noreferrer">A Single SNP in HERC2 Determines Human Blue-Brown Eye Color</a></li>
+    </ol>
+
     <h2>Frequently asked questions</h2>
     ${faqBlock(eyeFaq)}
 
@@ -1155,7 +1167,7 @@ function contentHair(){
     ])}
 
     <h3>Red hair and the MC1R gene</h3>
-    <p>Red hair is linked to recessive variants of <strong>MC1R</strong> — a child needs the variant from both parents to have visibly red hair, which is why it can appear in a family of brunettes when both parents are silent carriers. Roughly 1–2% of people worldwide have red hair, rising to around 10% in Ireland and Scotland. This recessive inheritance pattern is the same reason a hair color genetics chart often surprises parents who don't see red hair anywhere nearby in their own generation.</p>
+    <p>Red hair is linked to recessive variants of <strong>MC1R</strong><sup><a href="https://medlineplus.gov/genetics/gene/mc1r" target="_blank" rel="noopener noreferrer">[1]</a></sup> — a child needs the variant from both parents to have visibly red hair, which is why it can appear in a family of brunettes when both parents are silent carriers. Roughly 1–2% of people worldwide have red hair, rising to around 10% in Ireland and Scotland. This recessive inheritance pattern is the same reason a hair color genetics chart often surprises parents who don't see red hair anywhere nearby in their own generation.</p>
 
     <h2>Hair color probability chart</h2>
     <div class="table-wrap">
@@ -1194,6 +1206,12 @@ function contentHair(){
       <li><strong>Baby hair is temporary</strong> — birth color often has little relationship to the eventual adult color.</li>
     </ul>
 
+    <h2>Sources</h2>
+    <ol class="sources-list">
+      <li>National Library of Medicine, MedlinePlus Genetics — <a href="https://medlineplus.gov/genetics/understanding/traits/haircolor" target="_blank" rel="noopener noreferrer">Is hair color determined by genetics?</a></li>
+      <li>National Library of Medicine, MedlinePlus Genetics — <a href="https://medlineplus.gov/genetics/gene/mc1r" target="_blank" rel="noopener noreferrer">MC1R gene</a></li>
+    </ol>
+
     <h2>Frequently asked questions</h2>
     ${faqBlock(hairFaqData)}
 
@@ -1225,7 +1243,7 @@ function contentHeight(){
     ])}
 
     <h2>How much of height is genetic?</h2>
-    <p>Twin studies attribute roughly 60–80% of height variation to genetics, spread across over 700 identified genetic variants — unlike eye color, no small set of genes dominates. The rest comes from nutrition, sleep, chronic illness and hormonal factors during the growing years, all of which feed into what's often called a child's genetic height potential.</p>
+    <p>Twin studies attribute roughly 60–80% of height variation to genetics<sup><a href="https://medlineplus.gov/genetics/understanding/traits/height/" target="_blank" rel="noopener noreferrer">[1]</a></sup>, spread across over 700 identified genetic variants — unlike eye color, no small set of genes dominates. The rest comes from nutrition, sleep, chronic illness and hormonal factors during the growing years, all of which feed into what's often called a child's genetic height potential.</p>
 
     <h2>When do children stop growing?</h2>
     ${img('heightFamily')}
@@ -1245,6 +1263,12 @@ function contentHeight(){
       <li><strong>It assumes typical growth conditions</strong> — chronic illness or nutritional shortfalls aren't accounted for.</li>
       <li><strong>It can't detect medical causes</strong> — growth hormone deficiency requires clinical evaluation, not a formula.</li>
     </ul>
+
+    <h2>Sources</h2>
+    <ol class="sources-list">
+      <li>National Library of Medicine, MedlinePlus Genetics — <a href="https://medlineplus.gov/genetics/understanding/traits/height/" target="_blank" rel="noopener noreferrer">Is height determined by genetics?</a></li>
+      <li>Centers for Disease Control and Prevention — <a href="https://www.cdc.gov/growthcharts/" target="_blank" rel="noopener noreferrer">CDC Growth Charts</a></li>
+    </ol>
 
     <h2>Frequently asked questions</h2>
     ${faqBlock(heightFaqData)}
@@ -1285,6 +1309,11 @@ function contentGender(){
     <h2>How to actually find out</h2>
     ${img('genderUltra')}
     <p><strong>Ultrasound</strong> around 18–20 weeks usually identifies sex with high accuracy. <strong>NIPT</strong> (a maternal blood test) can often determine it from around 10 weeks. <strong>Amniocentesis/CVS</strong> are definitive but only performed for genuine medical indications. Ask your doctor which options are available to you, and check our <a href="/due-date/" data-link>due date calculator</a> to see roughly when an anatomy scan would fall.</p>
+
+    <h2>Sources</h2>
+    <ol class="sources-list">
+      <li>American College of Obstetricians and Gynecologists — <a href="https://www.acog.org/womens-health/faqs/Prenatal-Genetic-Screening-Tests" target="_blank" rel="noopener noreferrer">FAQs: Prenatal Genetic Screening Tests</a></li>
+    </ol>
 
     <h2>Frequently asked questions</h2>
     ${faqBlock(genderFaqData)}
@@ -1495,6 +1524,7 @@ function renderRoute(){
     <h1 class="tool-heading">${r.heading}</h1>
     <p class="tool-sub">${r.sub}</p>
     <div class="accuracy-row">${accuracyChip(r.accuracy)}</div>
+    <div class="byline">Written by the predictyourbaby team<span class="dot"></span>Sources reviewed: NIH MedlinePlus Genetics, CDC, ACOG</div>
     <div class="panel" id="panel"></div>
     <div class="content">${r.content()}</div>
     <footer><span>© 2026 predictyourbaby · Educational and entertainment use only · Not medical advice</span><span><a href="/" data-link>Home</a></span></footer>
@@ -1515,6 +1545,7 @@ window.addEventListener('DOMContentLoaded', function(){
     <h1 class="tool-heading">${r.heading}</h1>
     <p class="tool-sub">${r.sub}</p>
     <div class="accuracy-row">${accuracyChip(r.accuracy)}</div>
+    <div class="byline">Written by the predictyourbaby team<span class="dot"></span>Sources reviewed: NIH MedlinePlus Genetics, CDC, ACOG</div>
     <div class="panel" id="panel"></div>
     <div class="content">${r.content()}</div>
     <footer><span>© 2026 predictyourbaby · Educational and entertainment use only · Not medical advice</span><span><a href="/">Home</a></span></footer>
