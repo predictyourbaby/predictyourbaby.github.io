@@ -662,7 +662,7 @@ const bloodTypeFaqData = [
 const routes = {
   "": {isHome:true, title:"Predict Your Baby — Free Eye Color, Hair, Height, Gender, Due Date & Blood Type Calculators",
        desc:"Free baby predictor calculators — estimate your baby's eye color, hair color, adult height, gender, due date and blood type using genetics-based tools."},
-  "eye-color": {eyebrow:"Genetics calculator · High accuracy", heading:"Baby eye color calculator",
+  "eye-color": {eyebrow:"Genetics calculator · Moderate accuracy", heading:"Baby eye color calculator",
     sub:"Select both parents' eye colors — and grandparents if you know them — to see the probability of each eye color for your baby.",
     accuracy:"high", render:toolEyeColor, content:contentEyeColor, faq:eyeFaq,
     title:"Baby Eye Color Calculator — Predict Your Baby's Eyes | Genetics Chart",
@@ -672,7 +672,7 @@ const routes = {
     accuracy:"med", render:toolHair, content:contentHair, faq:hairFaqData,
     title:"Baby Hair Color Predictor — Estimate Your Baby's Hair | Genetics Chart",
     desc:"Free baby hair color predictor using melanin-based genetics. See the probability of black, brown, blonde or red hair for your baby, plus how hair color inheritance works."},
-  height: {eyebrow:"Growth calculator · High accuracy", heading:"Baby height predictor",
+  height: {eyebrow:"Growth calculator · Moderate accuracy", heading:"Baby height predictor",
     sub:"Enter both parents' heights to estimate your child's adult height using the mid-parental height method used by pediatricians.",
     accuracy:"high", render:toolHeight, content:contentHeight, faq:heightFaqData,
     title:"Baby Height Predictor — Estimate Your Child's Adult Height",
@@ -682,7 +682,7 @@ const routes = {
     accuracy:"low", render:toolGender, content:contentGender, faq:genderFaqData,
     title:"Baby Gender Predictor — Chinese Gender Chart Calculator",
     desc:"Try the traditional Chinese lunar gender chart to guess your baby's sex. For fun only — see real medical methods for an accurate boy or girl answer."},
-  "due-date": {eyebrow:"Pregnancy calculator · High accuracy", heading:"Pregnancy due date calculator",
+  "due-date": {eyebrow:"Pregnancy calculator · Moderate accuracy", heading:"Pregnancy due date calculator",
     sub:"Enter the first day of your last period to estimate your due date, current trimester and gestational age.",
     accuracy:"high", render:toolDueDate, content:contentDueDate, faq:dueDateFaqData,
     title:"Pregnancy Due Date Calculator — Estimate Your Baby's Arrival",
@@ -695,7 +695,7 @@ const routes = {
 };
 
 function accuracyChip(level){
-  const map = {high:["chip-high","High accuracy"], med:["chip-med","Medium accuracy"], low:["chip-low","Folklore only"]};
+  const map = {high:["chip-high","Moderate accuracy"], med:["chip-med","Medium accuracy"], low:["chip-low","Folklore only"]};
   const [cls,label] = map[level];
   return `<span class="chip ${cls}">${label}</span>`;
 }
@@ -1329,7 +1329,7 @@ function contentGender(){
 
     <h2>How to actually find out</h2>
     ${img('genderUltra')}
-    <p><strong>Ultrasound</strong> around 18–20 weeks usually identifies sex with high accuracy. <strong>NIPT</strong> (a maternal blood test) can often determine it from around 10 weeks. <strong>Amniocentesis/CVS</strong> are definitive but only performed for genuine medical indications. Ask your doctor which options are available to you, and check our <a href="/due-date/" data-link>due date calculator</a> to see roughly when an anatomy scan would fall.</p>
+    <p><strong>Ultrasound</strong> around 18–20 weeks usually identifies sex with Moderate accuracy. <strong>NIPT</strong> (a maternal blood test) can often determine it from around 10 weeks. <strong>Amniocentesis/CVS</strong> are definitive but only performed for genuine medical indications. Ask your doctor which options are available to you, and check our <a href="/due-date/" data-link>due date calculator</a> to see roughly when an anatomy scan would fall.</p>
 
     <h2>Sources</h2>
     <ol class="sources-list">
